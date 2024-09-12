@@ -45,7 +45,7 @@ async function consume_ws(req, res, path) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/xml',
-                'Content-Length': Buffer.byteLength(json)
+                'Content-Length': Buffer.byteLength(xml)
             }
         };
         let p = new Promise((resolve, reject) => {
@@ -71,7 +71,7 @@ async function consume_ws(req, res, path) {
 
     } catch (e) {
         console.log(e);
-        res.send('Err'+ e.message);
+        res.send('Error cachado: '+ e.message);
     }
 
 
