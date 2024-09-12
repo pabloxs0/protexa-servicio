@@ -37,7 +37,7 @@ async function consume_ws(req, res, path) {
 
         path = "/sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube";
 
-        var https = require('https');//, PORT = 7002;
+        var http = require('http');//, PORT = 7002;
         const options = {
             hostname: 'SAPDEV01.protexa.net',
             port: 8001,
@@ -49,7 +49,7 @@ async function consume_ws(req, res, path) {
             }
         };
         let p = new Promise((resolve, reject) => {
-            const req_prom = https.request(options, (res) => {
+            const req_prom = http.request(options, (res) => {
                 res.setEncoding('utf8');
                 let responseBody = '';
                 res.on('data', (chunk) => {
@@ -60,7 +60,7 @@ async function consume_ws(req, res, path) {
                 });
             });
             req_prom.on('error', (err) => {
-                res.json({"error_fatal": err.message + "["+err.code+"]"});
+                res.send("error_fatal" + err.message + "["+err.code+"]");
                 reject(err);
             });
             req_prom.write(xml)
@@ -71,7 +71,7 @@ async function consume_ws(req, res, path) {
 
     } catch (e) {
         console.log(e);
-        res.send({'Err': e});
+        res.send('Err'+ e.message);
     }
 
 
