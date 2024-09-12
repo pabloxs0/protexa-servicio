@@ -27,7 +27,7 @@ async function consume_soap(req, res, path) {
             }
 
             // Make a SOAP request
-            const args = { EWerks: 'New York', TMard:'', TMatnr:'' };
+            const args = { EWerks: 'New York', TMard:[], };
             client.ZfmMmConsultInvt(args, function(err, result) {
                 if (err) {
                     console.error('Error making SOAP request:', err);
