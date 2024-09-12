@@ -5,8 +5,8 @@ const router = Router();
 const soap = require('soap');
 
 router.post('/ws_test', (req, res) => {
-    return "OK!!!!!!!!!!!!!";
-    //consume_soap(req, res, '/efws/API/conciliacion');
+    //res.send('WOOOOW');
+    consume_soap(req, res);
 })
 
 
@@ -14,7 +14,7 @@ router.post('/ws_test', (req, res) => {
 module.exports = router;
 
 
-async function consume_soap(req, res, path) {
+async function consume_soap(req, res) {
     try {
         var xml = req.body;
         console.log("CONSUME SOAP!");
@@ -28,7 +28,7 @@ async function consume_soap(req, res, path) {
             }
 
             // Make a SOAP request
-            const args = { EWerks: 'New York', TMard:[], };
+            const args = { EWerks: 'New York', TMard:[{Matnr:'',Werks:'',Labst:''}], };
             client.ZfmMmConsultInvt(args, function(err, result) {
                 if (err) {
                     console.error('Error making SOAP request:', err);
