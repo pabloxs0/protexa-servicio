@@ -1,26 +1,57 @@
 const {Router} = require('express');
-//const https = require("https");
+
 const http = require("http");
 const router = Router();
+const soap = require('soap');
 
 router.post('/ws_test', (req, res) => {
-    consume_ws(req, res, '/efws/API/conciliacion');
+    consume_soap(req, res, '/efws/API/conciliacion');
 })
 
-router.post('/ws_conciliacion', (req, res) => {
-    //https://efws-dev.stpmex.com/efws/API/conciliacion
-    consume_ws(req, res, '/efws/API/conciliacion');
-})
-router.post('/ws_consultaCuenta', (req, res) => {
-    //https://efws-dev.stpmex.com/efws/API/conciliacion
-    consume_ws(req, res, '/efws/API/consultaCuenta');
-})
-router.post('/ws_consultaSaldoCuenta', (req, res) => {
-    //https://efws-dev.stpmex.com/efws/API/conciliacion
-    consume_ws(req, res, '/efws/API/consultaSaldoCuenta');
-})
+
 
 module.exports = router;
+
+
+async function consume_soap(req, res, path) {
+    try {
+        var xml = req.body;
+        console.log("CONSUME SOAP!");
+        // Create the SOAP client
+        const url = 'src\\ws_protexa\\WS_CONSINV_SINUBE.wsdl';
+        soap.createClient(url, function(err, client) {
+           console.log("CREA CLIENTE GO!");
+            if (err) {
+                console.error('PROTEXA. Error creating SOAP client:', err);
+                return;
+            }
+
+            // Make a SOAP request
+            const args = { EWerks: 'New York', TMard:'', TMatnr:'' };
+            client.ZfmMmConsultInvt(args, function(err, result) {
+                if (err) {
+                    console.error('Error making SOAP request:', err);
+                    return;
+                }
+
+                // Handle the SOAP response
+                console.log('Temperature:', result.temperature);
+                console.log('Description:', result.description);
+            });
+        });
+
+
+
+
+    } catch (e) {
+        console.log(e);
+        res.send('Error cachado: '+ e.message);
+    }
+
+
+}
+
+
 
 async function consume_ws(req, res, path) {
     try {
@@ -120,5 +151,7 @@ async function consume_ws_ant(req, res, path) {
     res.json({"mensaje": await p});
 
 
-    //   res.json({"mensaje": postreq.body});
+    //   res.json({"mensaje": postreq.body});8118016289
+    //Antonio Rdz 8118016289
+    //Arnoldo: 8122017667
 }
