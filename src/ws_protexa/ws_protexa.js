@@ -16,8 +16,8 @@ module.exports = router;
 
 async function consume_soap(req, res) {
     try {
-        res.send("JALA?!");
-        return;
+        //res.send("JALA?!");
+       // return;
         var xml = req.body;
         console.log("CONSUME SOAP!");
         // Create the SOAP client
