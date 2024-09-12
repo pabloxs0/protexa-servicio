@@ -28,7 +28,8 @@ async function consume_soap(req, res) {
                 console.error('PROTEXA. Error creating SOAP client:', err);
                 return;
             }
-
+            res.send("SE CREO EL CLIENTE");
+            return;
             // Make a SOAP request
             const args = { EWerks: '6110', TMatnr:[{item:{Matnr:'T4214160'}},{item:{Matnr:'T100000004'}}], };
             client.ZwsConsinvSinube(args, function(err, result) {
