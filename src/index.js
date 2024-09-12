@@ -2,21 +2,28 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
 const morgan = require('morgan');
-
+//require('body-parser-xml')(bodyParser);
 //configuraciones
 app.set('port', 7025);
-app.set('json spaces', 2);
+//app.set('json spaces', 2);
 
 //middleware
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(express.raw({ type: "*/*" }));
+//app.use(bodyParser.urlencoded({ extended: false }))
+//app.use(bodyParser.text())
+//app.use(bodyParser.xml());
+// app.use(
+//     bodyParser.xml({
+//         limit: '1MB', // Reject payload bigger than 1 MB
+//         xmlParseOptions: {
+//             normalize: true, // Trim whitespace inside text nodes
+//             normalizeTags: true, // Transform tags to lowercase
+//             explicitArray: false, // Only put nodes in array if >1
+//         },
+//     }),
+// );
 
-// app.use(function (req, res) {
-//    res.setHeader('Content-Type', 'text/plain')
-//    res.write('you posted:\n')
-//    res.end(JSON.stringify(req.body, null, 2))
-// })
 
 //routes
 app.use(require('./routes/prueba'));

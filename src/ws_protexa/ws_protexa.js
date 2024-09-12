@@ -1,13 +1,9 @@
 const {Router} = require('express');
-const https = require("https");
+//const https = require("https");
 const http = require("http");
 const router = Router();
 
 router.post('/ws_test', (req, res) => {
-    //https://efws-dev.stpmex.com/efws/API/conciliacion
-//    let responseBody = JSON.parse(this.err._body);
-//     let json_test = "{\"mensaje\": \"[{\"idEF\":323297083,\"claveRastreo\":\"BNET01002210070039492186\"\"}"
-//     res.send(json_test);
     consume_ws(req, res, '/efws/API/conciliacion');
 })
 
@@ -29,18 +25,10 @@ module.exports = router;
 async function consume_ws(req, res, path) {
     try {
         var xml = req.body;
-        //if (json == "{}") {
-          //  res.json({"error": "Cuerpo vacío '" + json + "'."});
-          //  return
-       // }
+
 //http://SAPDEV01.protexa.net:8001/sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube
 
         path = "/sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube";
-
-
-        // wr.ContentType = "text/xml;charset=utf-8";
-        // wr.ContentLength = soapMessage.ContentXml.Length;
-        // wr.Headers.Add("SOAPAction", soapMessage.SoapAction);
 
 
         var http = require('http');//, PORT = 7002;
@@ -70,7 +58,7 @@ async function consume_ws(req, res, path) {
                 res.send("error_fatal" + err.message + "["+err.code+"]");
                 reject(err);
             });
-            req_prom.write(xml)
+            req_prom.write(new Buffer(xml))
             req_prom.end();
         });
 
