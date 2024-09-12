@@ -37,6 +37,12 @@ async function consume_ws(req, res, path) {
 
         path = "/sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube";
 
+
+        // wr.ContentType = "text/xml;charset=utf-8";
+        // wr.ContentLength = soapMessage.ContentXml.Length;
+        // wr.Headers.Add("SOAPAction", soapMessage.SoapAction);
+
+
         var http = require('http');//, PORT = 7002;
         const options = {
             hostname: 'SAPDEV01.protexa.net',
@@ -44,8 +50,9 @@ async function consume_ws(req, res, path) {
             path: path,
             method: 'POST',
             headers: {
-                'Content-Type': 'application/xml',
-                'Content-Length': Buffer.byteLength(xml)
+                'Content-Type': 'text/xml;charset=UTF-8',
+                'Content-Length': Buffer.byteLength(xml),
+                'SOAPAction': ''
             }
         };
         let p = new Promise((resolve, reject) => {
