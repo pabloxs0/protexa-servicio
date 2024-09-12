@@ -31,9 +31,12 @@ async function consume_ws(req, res, path) {
         path = "/sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube";
 
 
+        //http://SAPDEV01.protexa.net:8001
+        // /sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube
+
         var http = require('http');//, PORT = 7002;
         const options = {
-            hostname: '172.16.254.210',
+            hostname: 'SAPDEV01.protexa.net',
             port: 8001,
             path: path,
             method: 'POST',
