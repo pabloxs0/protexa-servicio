@@ -5,7 +5,8 @@ const router = Router();
 const soap = require('soap');
 
 router.post('/ws_test', (req, res) => {
-    consume_soap(req, res, '/efws/API/conciliacion');
+    return "OK!!!!!!!!!!!!!";
+    //consume_soap(req, res, '/efws/API/conciliacion');
 })
 
 
