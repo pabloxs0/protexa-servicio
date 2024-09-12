@@ -28,11 +28,11 @@ module.exports = router;
 
 async function consume_ws(req, res, path) {
     try {
-        var json = JSON.stringify(req.body);
-        if (json == "{}") {
-            res.json({"error": "Cuerpo vacío '" + json + "'."});
-            return
-        }
+        var xml = req.body;
+        //if (json == "{}") {
+          //  res.json({"error": "Cuerpo vacío '" + json + "'."});
+          //  return
+       // }
 //http://SAPDEV01.protexa.net:8001/sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube
 
         path = "/sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube";
@@ -63,7 +63,7 @@ async function consume_ws(req, res, path) {
                 res.json({"error_fatal": err.message + "["+err.code+"]"});
                 reject(err);
             });
-            req_prom.write(json)
+            req_prom.write(xml)
             req_prom.end();
         });
 
@@ -71,7 +71,7 @@ async function consume_ws(req, res, path) {
 
     } catch (e) {
         console.log(e);
-        res.json({'Err': e});
+        res.send({'Err': e});
     }
 
 
