@@ -33,7 +33,7 @@ async function consume_ws(req, res, path) {
 
         var http = require('http');//, PORT = 7002;
         const options = {
-            hostname: 'SAPDEV01.protexa.net',
+            hostname: '172.16.254.210',
             port: 8001,
             path: path,
             method: 'POST',
