@@ -43,7 +43,7 @@ async function consume_soap(req, res) {
             const args = { EWerks: '6110', TMatnr:[{item:{Matnr:'T4214160'}},{item:{Matnr:'T100000004'}}], };
             client.ZfmMmConsultInvt(args, function(err, result) {
                 if (err) {
-                    console.log('Error making SOAP request:', result);
+                    console.log('CCCCCC:', err);
                     res.send("ERROR AL HACER EL REQUEST!!!" + result.toString());
                     return;
 
