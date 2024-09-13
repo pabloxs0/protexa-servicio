@@ -22,7 +22,7 @@ async function consume_soap(req, res) {
        // console.log("CONSUME SOAP!");
         // Create the SOAP client
         //const security = new soap.BasicAuthSecurity('USERTYMPERUC', 'Inicio1$2024');
-        const url = 'https://ep-dot-facturanube.appspot.com/resources/protexa/WS_CONSINV_SINUBE_B.wsdl';
+        const url = 'https://ep-dot-facturanube.appspot.com/resources/protexa/WS_CONSINV_SINUBE.wsdl';
         soap.createClient(url, function(err , client) {
            //console.log("CREA CLIENTE GO!");
             //client.setSecurity(security);
