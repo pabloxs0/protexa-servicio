@@ -34,7 +34,7 @@ async function consume_soap(req, res) {
 
             // Make a SOAP request
             const args = { EWerks: '6110', TMatnr:[{item:{Matnr:'T4214160'}},{item:{Matnr:'T100000004'}}], };
-            client.ZwsConsinvSinube(args, function(err, result) {
+            client.ZfmMmConsultInvt(args, function(err, result) {
                 if (err) {
                     console.error('Error making SOAP request:', err);
                     return;
