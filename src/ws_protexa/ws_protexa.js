@@ -44,7 +44,7 @@ async function consume_soap(req, res) {
             client.ZfmMmConsultInvt(args, function(err, result, rawResponse, soapHeader, rawRequest) {
                 if (err) {
                     console.log('CCCCCC:', err);
-                    res.send("ERROR AL HACER EL REQUEST!!!" + rawResponse);
+                    res.send("ERROR AL HACER EL REQUEST!!!" + soapHeader);
                     return;
                 }
 
