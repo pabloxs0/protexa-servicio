@@ -9,6 +9,11 @@ router.post('/ws_test', (req, res) => {
     consume_soap(req, res);
 })
 
+router.post('/ws_test_xml', (req, res) => {
+    //res.send('WOOOOW');
+    consume_ws_xml(req, res);
+})
+
 
 
 module.exports = router;
@@ -82,7 +87,7 @@ async function consume_soap(req, res) {
 
 
 
-async function consume_ws(req, res, path) {
+async function consume_ws_xml(req, res, path) {
     try {
         var xml = req.body;
 
