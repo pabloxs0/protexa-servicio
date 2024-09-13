@@ -21,7 +21,7 @@ async function consume_soap(req, res) {
         var xml = req.body;
        // console.log("CONSUME SOAP!");
         // Create the SOAP client
-        const security = new soap.BasicAuthSecurity('USERTYMPERUC', 'Inicio1$2024');
+        //const security = new soap.BasicAuthSecurity('USERTYMPERUC', 'Inicio1$2024');
         const url = 'https://ep-dot-facturanube.appspot.com/resources/protexa/WS_CONSINV_SINUBE.wsdl';
         soap.createClient(url, function(err, client) {
            //console.log("CREA CLIENTE GO!");
@@ -44,7 +44,7 @@ async function consume_soap(req, res) {
             client.ZfmMmConsultInvt(args, function(err, result) {
                 if (err) {
                     console.log('CCCCCC:', err);
-                    res.send("ERROR AL HACER EL REQUEST!!!" + result.body);
+                    res.send("ERROR AL HACER EL REQUEST!!!" + err);
                     return;
                 }
 
