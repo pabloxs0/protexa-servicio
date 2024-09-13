@@ -40,7 +40,7 @@ async function consume_soap(req, res) {
 
             // Make a SOAP request
            // const args = { EWerks: '6110', TMard:[], TMatnr:[{Matnr:'T4214160'},{Matnr:'T4923160'}], };
-            const args = { EWerks: '6110', TMard:[], TMatnr:[{item:{Matnr:'T4214160'}},{item:{Matnr:'T4923160'}}], };
+            const args = { EWerks: '6110', TMard:[{item:{Matnr:'',Werks:'',Labst:''}}], TMatnr:[{item:{Matnr:'T4214160'}},{item:{Matnr:'T4923160'}}], };
             client.ZfmMmConsultInvt(args, function(err, result, rawResponse, soapHeader, rawRequest) {
                 // result is a javascript array containing result, rawResponse, soapheader, and rawRequest
                 // result is a javascript object
