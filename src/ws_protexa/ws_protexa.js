@@ -21,12 +21,14 @@ async function consume_soap(req, res) {
         var xml = req.body;
         console.log("CONSUME SOAP!");
         // Create the SOAP client
-        const url = 'src\\ws_protexa\\WS_CONSINV_SINUBE.wsdl';
+        const url = 'https://ep-dot-facturanube.appspot.com/resources/protexa/WS_CONSINV_SINUBE.wsdl';
         soap.createClient(url, function(err, client) {
            console.log("CREA CLIENTE GO!");
             if (err) {
-                console.error('PROTEXA. Error creating SOAP client:', err);
+                res.send("ERROR AL CREAR EL CLIENTE!!!");
                 return;
+                //console.error('PROTEXA. Error creating SOAP client:', err);
+                //return;
             }
             res.send("SE CREO EL CLIENTE");
             return;
