@@ -19,11 +19,11 @@ async function consume_soap(req, res) {
         //res.send("JALA?!");
        // return;
         var xml = req.body;
-        console.log("CONSUME SOAP!");
+       // console.log("CONSUME SOAP!");
         // Create the SOAP client
         const url = 'https://ep-dot-facturanube.appspot.com/resources/protexa/WS_CONSINV_SINUBE.wsdl';
         soap.createClient(url, function(err, client) {
-           console.log("CREA CLIENTE GO!");
+           //console.log("CREA CLIENTE GO!");
             if (err) {
                 //res.send("ERROR AL CREAR EL CLIENTE!!!");
                 //return;
@@ -36,7 +36,7 @@ async function consume_soap(req, res) {
             const args = { EWerks: '6110', TMatnr:[{Matnr:'T4214160'},{Matnr:'T100000004'}], };
             client.ZfmMmConsultInvt(args, function(err, result) {
                 if (err) {
-                    console.error('Error making SOAP request:', err);
+                    console.log('Error making SOAP request:', err);
                     res.send("ERROR AL HACER EL REQUEST!!!" + err.message);
                     return;
 
