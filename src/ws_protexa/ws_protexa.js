@@ -42,9 +42,14 @@ async function consume_soap(req, res) {
             //const args = { EWerks: '6110', TMatnr:[{Matnr:'T4214160'},{Matnr:'T100000004'}], };
             const args = { EWerks: '6110', TMatnr:[{item:{Matnr:'T4214160'}},{item:{Matnr:'T100000004'}}], };
             client.ZfmMmConsultInvt(args, function(err, result, rawResponse, soapHeader, rawRequest) {
+                // result is a javascript array containing result, rawResponse, soapheader, and rawRequest
+                // result is a javascript object
+                // rawResponse is the raw xml response string
+                // soapHeader is the response soap header as a javascript object
+                // rawRequest is the raw xml request string
                 if (err) {
                     console.log('CCCCCC:', err);
-                    res.send("ERROR AL HACER EL REQUEST!!!" + soapHeader);
+                    res.send("ERROR AL HACER EL REQUEST!!!" + result.result);
                     return;
                 }
 
