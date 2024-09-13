@@ -67,7 +67,7 @@ async function consume_soap(req, res) {
 
                 // Handle the SOAP response
 
-                res.send(rawResponse);
+                res.send(rawRequest);
                 return;
                 //console.log('Temperature:', result.temperature);
                 //console.log('Description:', result.description);
