@@ -25,7 +25,9 @@ async function consume_soap(req, res) {
         const url = 'https://ep-dot-facturanube.appspot.com/resources/protexa/WS_CONSINV_SINUBE.wsdl';
         soap.createClient(url, function(err, client) {
            //console.log("CREA CLIENTE GO!");
-            client.setSecurity(security);
+            //client.setSecurity(security);
+            var auth = "Basic " + new Buffer("USERTYMPERUC" + ":" + "Inicio1$2024").toString("base64");
+            client.addHttpHeader('Authorization',auth);
             if (err) {
                 //res.send("ERROR AL CREAR EL CLIENTE!!!");
                 //return;
@@ -33,6 +35,8 @@ async function consume_soap(req, res) {
                 res.send("ERROR AL CREAR EL CLIENTE!!!" + err.message);
                 return;
             }
+
+            var auth = "Basic " + new Buffer('username' + ':' + 'password').toString("base64");
 
             // Make a SOAP request
             const args = { EWerks: '6110', TMatnr:[{Matnr:'T4214160'},{Matnr:'T100000004'}], };
