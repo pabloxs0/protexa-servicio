@@ -23,7 +23,7 @@ async function consume_soap(req, res) {
         // Create the SOAP client
         //const security = new soap.BasicAuthSecurity('USERTYMPERUC', 'Inicio1$2024');
         const url = 'https://ep-dot-facturanube.appspot.com/resources/protexa/WS_CONSINV_SINUBE.wsdl';
-        soap.createClient(url, function(err, client) {
+        soap.createClient(url, function(err , client) {
            //console.log("CREA CLIENTE GO!");
             //client.setSecurity(security);
             var auth = "Basic " + new Buffer("USERTYMPERUC" + ":" + "Inicio1$2024").toString("base64");
@@ -41,15 +41,15 @@ async function consume_soap(req, res) {
             // Make a SOAP request
             //const args = { EWerks: '6110', TMatnr:[{Matnr:'T4214160'},{Matnr:'T100000004'}], };
             const args = { EWerks: '6110', TMatnr:[{item:{Matnr:'T4214160'}},{item:{Matnr:'T100000004'}}], };
-            client.ZfmMmConsultInvt(args, function(err, result, rawResponse, soapHeader, rawRequest) {
+            client.ZfmMmConsultInvt(args, function(err_, result, rawResponse, soapHeader, rawRequest) {
                 // result is a javascript array containing result, rawResponse, soapheader, and rawRequest
                 // result is a javascript object
                 // rawResponse is the raw xml response string
                 // soapHeader is the response soap header as a javascript object
                 // rawRequest is the raw xml request string
-                if (err) {
-                    console.log('CCCCCC:', err);
-                    res.send("ERROR AL HACER EL REQUEST!!!" + rawResponse);
+                if (err_) {
+                    console.log('CCCCCC:', err_);
+                    res.send("ERROR AL HACER EL REQUEST!!!" + err_.message);
                     return;
                 }
 
