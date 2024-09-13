@@ -41,10 +41,10 @@ async function consume_soap(req, res) {
             // Make a SOAP request
             //const args = { EWerks: '6110', TMatnr:[{Matnr:'T4214160'},{Matnr:'T100000004'}], };
             const args = { EWerks: '6110', TMatnr:[{item:{Matnr:'T4214160'}},{item:{Matnr:'T100000004'}}], };
-            client.ZfmMmConsultInvt(args, function(err, result) {
+            client.ZfmMmConsultInvt(args, function(err, result, rawResponse, soapHeader, rawRequest) {
                 if (err) {
                     console.log('CCCCCC:', err);
-                    res.send("ERROR AL HACER EL REQUEST!!!" + client.lastResponse);
+                    res.send("ERROR AL HACER EL REQUEST!!!" + rawResponse);
                     return;
                 }
 
