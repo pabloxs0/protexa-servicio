@@ -36,7 +36,6 @@ async function consume_soap(req, res) {
                 return;
             }
 
-            var auth = "Basic " + new Buffer('username' + ':' + 'password').toString("base64");
 
             // Make a SOAP request
             const args = { EWerks: '6110', TMatnr:[{Matnr:'T4214160'},{Matnr:'T100000004'}], };
