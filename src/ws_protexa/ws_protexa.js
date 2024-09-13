@@ -41,33 +41,25 @@ async function consume_soap(req, res) {
             // Make a SOAP request
             //const args = { EWerks: '6110', TMatnr:[{Matnr:'T4214160'},{Matnr:'T100000004'}], };
             const args = { EWerks: '6110', TMatnr:[{item:{Matnr:'T4214160'}},{item:{Matnr:'T100000004'}}], };
-            client.ZfmMmConsultInvt(args).then((result) => {
+            client.ZfmMmConsultInvt(args, function(err, result, rawResponse, soapHeader, rawRequest) {
                 // result is a javascript array containing result, rawResponse, soapheader, and rawRequest
                 // result is a javascript object
-                res.send("HERROR AL HACER EL REQUEST!!!" + result.rawRequest);
                 // rawResponse is the raw xml response string
                 // soapHeader is the response soap header as a javascript object
                 // rawRequest is the raw xml request string
+                if (err) {
+                    console.log('CCCCCC:', err);
+                    res.send("ERROR AL HACER EL REQUEST!!!" + soapHeader);
+                    return;
+                }
+
+                // Handle the SOAP response
+
+                res.send("PASO!");
+                return;
+                //console.log('Temperature:', result.temperature);
+                //console.log('Description:', result.description);
             });
-            //     , function(err, result, rawResponse, soapHeader, rawRequest) {
-            //     // result is a javascript array containing result, rawResponse, soapheader, and rawRequest
-            //     // result is a javascript object
-            //     // rawResponse is the raw xml response string
-            //     // soapHeader is the response soap header as a javascript object
-            //     // rawRequest is the raw xml request string
-            //     if (err) {
-            //         console.log('CCCCCC:', err);
-            //         res.send("ERROR AL HACER EL REQUEST!!!" + result.rawRequest);
-            //         return;
-            //     }
-            //
-            //     // Handle the SOAP response
-            //
-            //     res.send("PASO!");
-            //     return;
-            //     //console.log('Temperature:', result.temperature);
-            //     //console.log('Description:', result.description);
-            // });
         });
 
 
