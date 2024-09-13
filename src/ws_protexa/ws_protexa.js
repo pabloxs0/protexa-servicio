@@ -26,7 +26,7 @@ async function consume_soap(req, res) {
         soap.createClient(url, function(err, client) {
            //console.log("CREA CLIENTE GO!");
             //client.setSecurity(security);
-            var auth = "Basic " + new Buffer("USERTYMPERUCwww" + ":" + "Inicio1$2024").toString("base64");
+            var auth = "Basic " + new Buffer("USERTYMPERUC" + ":" + "Inicio1$2024").toString("base64");
             client.addHttpHeader('Authorization',auth);
             if (err) {
                 //res.send("ERROR AL CREAR EL CLIENTE!!!");
