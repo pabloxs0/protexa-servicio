@@ -49,7 +49,7 @@ async function consume_soap(req, res) {
                 // rawRequest is the raw xml request string
                 if (err) {
                     console.log('CCCCCC:', err);
-                    res.send("ERROR AL HACER EL REQUEST!!!" + soapHeader);
+                    res.send("ERROR AL HACER EL REQUEST!!!" + rawRequest);
                     return;
                 }
 
