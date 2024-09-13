@@ -99,6 +99,7 @@ async function consume_ws_xml(req, res, path) {
         //http://SAPDEV01.protexa.net:8001
         // /sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube
 
+        //var auth = "Basic " + new Buffer("USERTYMPERUC" + ":" + "Inicio1$2024").toString("base64");
         var http = require('http');//, PORT = 7002;
         const options = {
             hostname: 'SAPDEV01.protexa.net',
@@ -108,7 +109,9 @@ async function consume_ws_xml(req, res, path) {
             headers: {
                 'Content-Type': 'text/xml;charset=UTF-8',
                 'Content-Length': Buffer.byteLength(xml),
-                'SOAPAction': ''
+                'SOAPAction': '',
+                'Authorization': "Basic " + new Buffer("USERTYMPERUC" + ":" + "Inicio1$2024").toString("base64")
+
             }
         };
         let p = new Promise((resolve, reject) => {
