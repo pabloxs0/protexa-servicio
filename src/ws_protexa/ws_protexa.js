@@ -25,10 +25,11 @@ async function consume_soap(req, res) {
         soap.createClient(url, function(err, client) {
            console.log("CREA CLIENTE GO!");
             if (err) {
-                res.send("ERROR AL CREAR EL CLIENTE!!!");
-                return;
-                //console.error('PROTEXA. Error creating SOAP client:', err);
+                //res.send("ERROR AL CREAR EL CLIENTE!!!");
                 //return;
+                //console.error('PROTEXA. Error creating SOAP client:', err);
+                res.send("ERROR AL CREAR EL CLIENTE!!!" + err.message);
+                return;
             }
 
             // Make a SOAP request
