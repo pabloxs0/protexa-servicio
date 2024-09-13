@@ -36,7 +36,7 @@ async function consume_soap(req, res) {
                 return;
             }
 
-
+            res.send("ERROR AL HACER EL REQUEST!!!" + JSON.stringify(client));
 
             // Make a SOAP request
             //const args = { EWerks: '6110', TMatnr:[{Matnr:'T4214160'},{Matnr:'T100000004'}], };
