@@ -4,23 +4,21 @@ const http = require("http");
 const router = Router();
 const soap = require('soap');
 
-router.post('/ws_test', (req, res) => {
-    //res.send('WOOOOW');
-    consume_soap(req, res);
-})
+
 
 router.post('/consultaInventario', (req, res) => {
     path = "/sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube";
     consume_ws_xml(req, res, path);
 })
-
+router.post('/salidaPorVenta', (req, res) => {
+    path = "/sap/bc/srt/rfc/sap/zws_salventas_sinube/300/zws_salventas_sinube/zws_salventas_sinube";
+    consume_ws_xml(req, res, path);
+})
 module.exports = router;
 
 async function consume_ws_xml(req, res, path) {
     try {
         var xml = req.body;
-
-        //http://SAPDEV01.protexa.net:8001/sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube
 
         var http = require('http');//, PORT = 7002;
         const options = {
