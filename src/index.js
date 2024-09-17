@@ -31,7 +31,15 @@ app.use(require('./ws_protexa/ws_protexa'));
 // app.use(require('./routes/cambio_estado'));
 // app.use(require('./routes_stp_ws/stp_ws'));
 //app.use(require('./routes/pruebas'));
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Origin");
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    next();
+});
 //start server
 app.listen(app.get('port'),()=> {
     console.log(`Server on port ${7025}`);//backtick (alt+96)
 });
+
