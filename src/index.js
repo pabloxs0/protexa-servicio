@@ -2,12 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
 const morgan = require('morgan');
-//require('body-parser-xml')(bodyParser);
+const cors = require('cors')
+
+
 //configuraciones
 app.set('port', 7025);
 //app.set('json spaces', 2);
 
 //middleware
+app.use(cors())
 app.use(morgan('dev'));
 app.use(express.raw({ type: "*/*" }));
 //app.use(bodyParser.urlencoded({ extended: false }))
