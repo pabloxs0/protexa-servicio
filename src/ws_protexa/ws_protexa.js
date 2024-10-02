@@ -4,7 +4,8 @@ const http = require("http");
 const router = Router();
 const soap = require('soap');
 
-
+//http://prodap01:8002/sap/bc/srt/rfc/sap/zws_salventas_sinube/300/zws_salventas_sinube/zws_salventas_sinube
+//http://prodap01:8002/sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube
 
 router.post('/consultaInventario', (req, res) => {
     path = "/sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube";
@@ -22,7 +23,7 @@ async function consume_ws_xml(req, res, path) {
 
         var http = require('http');//, PORT = 7002;
         const options = {
-            hostname: 'SAPDEV01.protexa.net',
+            hostname: 'prodap01',
             port: 8001,
             path: path,
             method: 'POST',
