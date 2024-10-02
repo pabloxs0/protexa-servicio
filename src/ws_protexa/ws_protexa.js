@@ -24,7 +24,7 @@ async function consume_ws_xml(req, res, path) {
         var http = require('http');//, PORT = 7002;
         const options = {
             hostname: 'prodap01',
-            port: 8001,
+            port: 8002,
             path: path,
             method: 'POST',
             headers: {
