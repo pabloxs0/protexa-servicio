@@ -31,7 +31,7 @@ async function consume_ws_xml(req, res, path) {
                 'Content-Type': 'text/xml;charset=UTF-8',
                 'Content-Length': Buffer.byteLength(xml),
                 'SOAPAction': '',
-                'Authorization': "Basic " + new Buffer("USERTYMPERUC" + ":" + "Inicio1$2024").toString("base64")
+                'Authorization': "Basic " + new Buffer("USERTYMPERUC" + ":" + "TymperZ4$").toString("base64")
 
             }
         };
