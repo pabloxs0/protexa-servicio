@@ -6,13 +6,17 @@ const soap = require('soap');
 
 //http://prodap01:8002/sap/bc/srt/rfc/sap/zws_salventas_sinube/300/zws_salventas_sinube/zws_salventas_sinube
 //http://prodap01:8002/sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube
-
+//http://SAPDEV01.protexa.net:8001/sap/bc/srt/rfc/sap/zws_fi_regvta/300/zws_fi_regvta/zws_fi_regvta
 router.post('/consultaInventario', (req, res) => {
     path = "/sap/bc/srt/rfc/sap/zws_consinv_sinube/300/zws_consinv_sinube/zws_consinv_sinube";
     consume_ws_xml(req, res, path);
 })
 router.post('/salidaPorVenta', (req, res) => {
     path = "/sap/bc/srt/rfc/sap/zws_salventas_sinube/300/zws_salventas_sinube/zws_salventas_sinube";
+    consume_ws_xml(req, res, path);
+})
+router.post('/registroVenta', (req, res) => {
+    path = "/sap/bc/srt/rfc/sap/zws_fi_regvta/300/zws_fi_regvta/zws_fi_regvta";
     consume_ws_xml(req, res, path);
 })
 module.exports = router;
