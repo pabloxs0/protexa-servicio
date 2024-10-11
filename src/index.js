@@ -15,6 +15,7 @@ app.use(express.raw({ type: "*/*" }));
 //routes
 app.use(require('./routes/prueba'));
 app.use(require('./ws_protexa/ws_protexa'));
+app.use(require('./ws_protexa/ws_protexa_test'));
 
 //start server
 app.listen(app.get('port'),()=> {
