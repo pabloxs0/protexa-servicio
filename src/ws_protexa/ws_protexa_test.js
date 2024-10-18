@@ -25,45 +25,40 @@ async function consume_ws_xml(req, res, path) {
     try {
         var xml = req.body;
 
+        var http = require('http');//, PORT = 7002;
+        const options = {
+            hostname: 'SAPDEV01.protexa.net',
+            port: 8001,
+            path: path,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/xml;charset=UTF-8',
+                'Content-Length': Buffer.byteLength(xml),
+                'SOAPAction': '',
+                'Authorization': "Basic " + new Buffer("USERTYMPERUC" + ":" + "TymperZ4$").toString("base64")
 
-        console.log(e);
-        res.send('Entró sin problema: '+ req.body);
+            }
+        };
+        let p = new Promise((resolve, reject) => {
+            const req_prom = http.request(options, (res) => {
+                res.setEncoding('utf8');
+                let responseBody = '';
+                res.on('data', (chunk) => {
+                    responseBody += chunk;
+                });
+                res.on('end', () => {
+                    resolve(responseBody);
+                });
+            });
+            req_prom.on('error', (err) => {
+                res.send("error_fatal" + err.message + "["+err.code+"]");
+                reject(err);
+            });
+            req_prom.write(new Buffer(xml))
+            req_prom.end();
+        });
 
-
-        // var http = require('http');//, PORT = 7002;
-        // const options = {
-        //     hostname: 'SAPDEV01.protexa.net',
-        //     port: 8001,
-        //     path: path,
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'text/xml;charset=UTF-8',
-        //         'Content-Length': Buffer.byteLength(xml),
-        //         'SOAPAction': '',
-        //         'Authorization': "Basic " + new Buffer("USERTYMPERUC" + ":" + "TymperZ4$").toString("base64")
-        //
-        //     }
-        // };
-        // let p = new Promise((resolve, reject) => {
-        //     const req_prom = http.request(options, (res) => {
-        //         res.setEncoding('utf8');
-        //         let responseBody = '';
-        //         res.on('data', (chunk) => {
-        //             responseBody += chunk;
-        //         });
-        //         res.on('end', () => {
-        //             resolve(responseBody);
-        //         });
-        //     });
-        //     req_prom.on('error', (err) => {
-        //         res.send("error_fatal" + err.message + "["+err.code+"]");
-        //         reject(err);
-        //     });
-        //     req_prom.write(new Buffer(xml))
-        //     req_prom.end();
-        // });
-        //
-        // res.send(await p);
+        res.send(await p);
 
     } catch (e) {
         console.log(e);
