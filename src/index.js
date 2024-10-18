@@ -11,7 +11,7 @@ app.set('port', 7025);
 //middleware
 app.use(cors());
 app.use(morgan('dev'));
-app.use(express.raw({ type: "*/*" }));
+app.use(express.raw({ type: "*/*",limit: '2mb' }));
 //routes
 app.use(require('./routes/prueba'));
 app.use(require('./ws_protexa/ws_protexa'));
